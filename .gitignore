@@ -1,0 +1,49 @@
+# ── 项目目录 ──────────────────────────────────────
+_book/
+inbox/
+tasks/
+reports/
+daily/
+agent-workspace/
+changelog.md
+
+# ── Office 文档 ───────────────────────────────────
+*.xlsx
+*.xls
+*.xlsm
+*.xlsb
+*.csv
+*.tsv
+*.docx
+*.doc
+*.pptx
+*.ppt
+*.pdf
+
+# ── demo 目录（允许提交所有文件，含 Office）────────
+!demo/
+!demo/**
+
+# ── 临时文件 ──────────────────────────────────────
+~$*
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
+*.lock
+.~lock.*
+
+# ── OS ────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ── 密钥 ──────────────────────────────────────────
+.env
+*.env.local
+
+# ── Node / Python ─────────────────────────────────
+node_modules/
+__pycache__/
+*.pyc
