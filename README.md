@@ -2,7 +2,7 @@
 
 > 把文件丢进 inbox，然后去冲浪。回来的时候，活已经干完了。
 
-完整使用文档：https://keta1930.github.io/ai-workbench/
+完整使用文档：https://ai-lingnan.github.io/ai-workbench/
 
 ## 这是什么
 
