@@ -5,6 +5,7 @@ tasks/
 reports/
 daily/
 agent-workspace/
+templates/
 changelog.md
 
 # ── Office 文档 ───────────────────────────────────
