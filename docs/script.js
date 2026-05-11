@@ -95,7 +95,7 @@
 
   function updateBgmUI() {
     var iconChar = bgmPlaying ? '&' : 'x';
-    var labelText = bgmPlaying ? '播放' : '静音';
+    var labelText = bgmPlaying ? (isEn ? 'Play' : '播放') : (isEn ? 'Mute' : '静音');
     if (bgmIcon) bgmIcon.textContent = iconChar;
     if (bgmLabel) bgmLabel.textContent = labelText;
     if (bgmBtn) bgmBtn.classList.toggle('bgm-playing', bgmPlaying);
@@ -232,11 +232,17 @@
 
   /* ── Lightbox ── */
 
+  var isEn = document.documentElement.lang === 'en';
+
   var CAPTIONS = {
     '项目架构图': '这是工作台的全景。你把文件丢进 inbox，跟 Claude 说一声想要什么，它会和你聊两句确认清楚，然后写张便签把方案定下来。有了便签，后面全自动——选 Skill、处理文件、产出结果、更新索引、提交 Git，一条龙。',
     '处理流程图': '一个任务走完全程就 5 步。先把文件夹扔进 inbox，然后告诉 Claude 你想要什么——它会跟你确认细节，写张便签把方案定下来。有了便签，后面全自动：按方案选 Skill 处理，产出结果，更新索引提交 Git。你参与前两步定方向，后面三步 Claude 包办。',
     'Skill 路由表': '这是 Skill 和文件类型的对应关系。Excel 一般走 minimax-xlsx，Word 走 minimax-docx，PPT 走 pptx-generator。PDF 有三条路——转文字用 mineru，合并拆分用 pdf，要做精美排版就用 minimax-pdf。具体怎么选，是你和 Claude 在写便签时一起定的，不是系统自己猜的。',
-    'Loop 自动化流程': '两个后台定时任务替你值班。inbox-monitor 每 20 分钟扫一遍收件箱，看到写好便签的任务就拉走处理，没便签的不碰，等你跟 Claude 定好方案再说。daily-routine 每天跑一次，读当天的工作记录写日报，周五还额外出一份周报。你该干嘛干嘛，它们自己会转。'
+    'Loop 自动化流程': '两个后台定时任务替你值班。inbox-monitor 每 20 分钟扫一遍收件箱，看到写好便签的任务就拉走处理，没便签的不碰，等你跟 Claude 定好方案再说。daily-routine 每天跑一次，读当天的工作记录写日报，周五还额外出一份周报。你该干嘛干嘛，它们自己会转。',
+    'Architecture': 'The big picture of the workspace. You drop files into inbox, tell Claude what you need, and it chats with you to confirm the details, then writes a task note to lock down the plan. Once the note is set, everything is automatic — Skill selection, file processing, output, index updates, and git commit, all in one go.',
+    'Workflow': 'A task goes through 5 steps from start to finish. First, drop a folder into inbox, then tell Claude what you want — it confirms the details with you and writes a task note. After that, it\'s all automatic: the right Skill is selected, files are processed, output is produced, indexes are updated, and everything is committed to git. You handle the first two steps, Claude handles the rest.',
+    'Skill Routing Table': 'This is the mapping between file types and Skills. Excel typically goes to minimax-xlsx, Word to minimax-docx, PPT to pptx-generator. PDF has three paths — text extraction uses mineru, merge/split uses pdf, and design-grade output uses minimax-pdf. The choice is made by you and Claude together when writing the task note, not guessed by the system.',
+    'Automation Loops': 'Two background scheduled tasks keep watch for you. inbox-monitor scans the inbox every 20 minutes — tasks with a completed note get pulled in for processing, those without are left alone until you and Claude finalize the plan. daily-routine runs once a day, reads the work log and writes a daily report, plus a weekly report on Fridays. You go about your day, they keep running.'
   };
 
   var lightbox = document.getElementById('lightbox');

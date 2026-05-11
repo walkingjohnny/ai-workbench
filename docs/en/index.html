@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Workbench | Office Automation Powered by Claude Code</title>
+<meta name="description" content="AI Workbench is an automated office workspace powered by Claude Code. Drop documents into inbox, the system auto-identifies, processes, and archives them. Supports Excel, PDF, PPT, and reports.">
+<meta name="keywords" content="AI Workbench, Claude Code, office automation, document processing, Excel analysis, PDF parsing, PPT generation, automated reports">
+<link rel="canonical" href="https://ai-lingnan.github.io/ai-workbench/en/">
+<link rel="alternate" hreflang="zh" href="https://ai-lingnan.github.io/ai-workbench/">
+<link rel="alternate" hreflang="en" href="https://ai-lingnan.github.io/ai-workbench/en/">
+<link rel="alternate" hreflang="x-default" href="https://ai-lingnan.github.io/ai-workbench/">
+<meta property="og:title" content="AI Workbench | Office Automation Powered by Claude Code">
+<meta property="og:description" content="Drop files into inbox, then go surfing. When you come back, the work is done.">
+<meta property="og:url" content="https://ai-lingnan.github.io/ai-workbench/en/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://ai-lingnan.github.io/ai-workbench/assets/architecture-en.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Workbench | Office Automation Powered by Claude Code">
+<meta name="twitter:description" content="Drop files into inbox, then go surfing. When you come back, the work is done.">
+<meta name="twitter:image" content="https://ai-lingnan.github.io/ai-workbench/assets/architecture-en.png">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<div id="loading-screen">
+  <div class="loading-content">
+    <div class="loading-title">AI Workbench</div>
+    <div class="loading-bar">
+      <div class="loading-fill" id="loading-fill"></div>
+    </div>
+    <div class="loading-percent" id="loading-percent">0%</div>
+  </div>
+  <div class="loading-ocean" id="loading-ocean">
+    <div class="loading-wave"></div>
+  </div>
+</div>
+<noscript><style>#loading-screen{display:none}.snap-container{scroll-snap-type:none}</style></noscript>
+
+<canvas id="particles"></canvas>
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<!-- Sidebar Navigation -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-nav">
+    <a href="#hero" class="sidebar-item active" data-section="hero" title="AI Workbench">
+      <span class="sidebar-icon">~</span>
+      <span class="sidebar-label">Home</span>
+    </a>
+    <a href="#overview" class="sidebar-item" data-section="overview" title="Overview">
+      <span class="sidebar-icon">#</span>
+      <span class="sidebar-label">About</span>
+    </a>
+    <a href="#setup" class="sidebar-item" data-section="setup" title="Quick Start">
+      <span class="sidebar-icon">></span>
+      <span class="sidebar-label">Start</span>
+    </a>
+    <a href="#workflow" class="sidebar-item" data-section="workflow" title="Workflow">
+      <span class="sidebar-icon">@</span>
+      <span class="sidebar-label">Flow</span>
+    </a>
+    <a href="#skills" class="sidebar-item" data-section="skills" title="Skill Routing">
+      <span class="sidebar-icon">$</span>
+      <span class="sidebar-label">Route</span>
+    </a>
+    <a href="#loops" class="sidebar-item" data-section="loops" title="Automation">
+      <span class="sidebar-icon">%</span>
+      <span class="sidebar-label">Auto</span>
+    </a>
+    <a href="#structure" class="sidebar-item" data-section="structure" title="Directory Structure">
+      <span class="sidebar-icon">=</span>
+      <span class="sidebar-label">Files</span>
+    </a>
+  </div>
+  <div class="sidebar-controls">
+    <a href="../" class="sidebar-btn" title="中文版">
+      <span class="sidebar-icon">文</span>
+      <span class="sidebar-label">中文</span>
+    </a>
+    <button id="bgm-toggle" class="sidebar-btn" title="Background Music">
+      <span class="sidebar-icon" id="bgm-icon">x</span>
+      <span class="sidebar-label" id="bgm-label">Mute</span>
+    </button>
+    <button id="dark-toggle" class="sidebar-btn" title="Theme">
+      <span class="sidebar-icon">*</span>
+      <span class="sidebar-label">Theme</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Bottom Navigation -->
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="#hero" class="mobile-nav-item active" data-section="hero" title="Home">~</a>
+  <a href="#overview" class="mobile-nav-item" data-section="overview" title="Overview">#</a>
+  <a href="#setup" class="mobile-nav-item" data-section="setup" title="Start">></a>
+  <a href="#workflow" class="mobile-nav-item" data-section="workflow" title="Flow">@</a>
+  <a href="#skills" class="mobile-nav-item" data-section="skills" title="Route">$</a>
+  <a href="#loops" class="mobile-nav-item" data-section="loops" title="Auto">%</a>
+  <a href="#structure" class="mobile-nav-item" data-section="structure" title="Files">=</a>
+  <a href="../" class="mobile-nav-item" title="中文">文</a>
+  <button id="bgm-toggle-mobile" class="mobile-nav-item" title="Music">x</button>
+  <button id="dark-toggle-mobile" class="mobile-nav-item" title="Theme">*</button>
+</nav>
+
+<div class="snap-container" id="snap-container">
+
+  <!-- Hero (Screen 1) -->
+  <section id="hero" class="snap-section hero-section">
+    <div class="pixel-wave-top"></div>
+    <div class="hero-inner">
+      <h1>AI Workbench</h1>
+      <p class="subtitle">Automated office workspace powered by Claude Code</p>
+      <div class="hero-scroll-hint" id="hero-scroll-hint">
+        <span class="scroll-arrow">v</span>
+        <span class="scroll-arrow">v</span>
+        <span class="scroll-arrow">v</span>
+      </div>
+    </div>
+    <div class="hero-wave-bottom"></div>
+  </section>
+
+  <!-- Overview (Screen 2) -->
+  <section id="overview" class="snap-section">
+    <div class="section-inner">
+      <h2>Overview</h2>
+      <div class="card">
+        <p>AI Workbench is an automated office workspace powered by <strong>Claude Code</strong>. Drop documents into <code>inbox/</code>, and the system automatically identifies the file type, routes it to the appropriate Skill for processing, archives the output, and updates all indexes.</p>
+        <picture>
+          <source srcset="../assets/architecture-en.webp" type="image/webp">
+          <img src="../assets/architecture-en.png" alt="Architecture" class="img-full" loading="lazy">
+        </picture>
+        <p class="caption">Architecture: inbox drop-off &rarr; tasks processing &rarr; archive storage, with three-tier index sync</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Setup (Screen 3) -->
+  <section id="setup" class="snap-section">
+    <div class="section-inner">
+      <h2>Quick Start</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Clone the Project</h3>
+            <pre><code>git clone https://github.com/ai-lingnan/ai-workbench.git
+cd ai-workbench</code></pre>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Initialize</h3>
+            <p>Send this prompt to Claude Code:</p>
+            <pre><code>Read the README.md of this project, then initialize the workspace.</code></pre>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Explore</h3>
+            <pre><code>Tell me what this project can do and how it works.</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="tip">
+        <strong>That's it</strong>: two prompts and Claude handles all the configuration. After that, just drop task folders into <code>inbox/</code>.
+      </div>
+    </div>
+  </section>
+
+  <!-- Workflow (Screen 4) -->
+  <section id="workflow" class="snap-section">
+    <div class="section-inner">
+      <h2>Workflow</h2>
+      <div class="card">
+        <p>A task goes through 5 steps from start to finish: drop files, write a task note, route to a Skill, produce output, update index &amp; git commit. You only participate in the first two.</p>
+        <picture>
+          <source srcset="../assets/workflow-en.webp" type="image/webp">
+          <img src="../assets/workflow-en.png" alt="Workflow" class="img-full" loading="lazy">
+        </picture>
+        <div class="img-footer">
+          <p class="caption">Drop &rarr; Note &rarr; Route &rarr; Output &rarr; Commit</p>
+          <button class="ref-btn" data-ref="workflow-detail">Details &#9654;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills (Screen 5) -->
+  <section id="skills" class="snap-section">
+    <div class="section-inner">
+      <h2>Skill Routing</h2>
+      <div class="card">
+        <p>When writing the task note, you and Claude decide which Skill to use. Here's the mapping between file types and Skills.</p>
+        <picture>
+          <source srcset="../assets/skill-routing-en.webp" type="image/webp">
+          <img src="../assets/skill-routing-en.png" alt="Skill Routing Table" class="img-center" style="max-height:70vh" loading="lazy">
+        </picture>
+        <div class="img-footer">
+          <p class="caption">File type &rarr; Skill mapping</p>
+          <button class="ref-btn" data-ref="skills-detail">PDF Details &#9654;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Loops (Screen 6) -->
+  <section id="loops" class="snap-section">
+    <div class="section-inner">
+      <h2>Automation Loops</h2>
+      <div class="card">
+        <p>Two background scheduled tasks keep watch for you, running automatically around the clock.</p>
+        <picture>
+          <source srcset="../assets/loops-diagram-en.webp" type="image/webp">
+          <img src="../assets/loops-diagram-en.png" alt="Automation Loops" class="img-full" loading="lazy">
+        </picture>
+        <div class="img-footer">
+          <p class="caption">inbox-monitor handles tasks, daily-routine generates reports</p>
+          <button class="ref-btn" data-ref="loops-detail">Details &#9654;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Structure (Screen 7) -->
+  <section id="structure" class="snap-section">
+    <div class="section-inner">
+      <h2>Directory Structure</h2>
+      <div class="card">
+        <table>
+          <thead><tr><th>Directory</th><th>Purpose</th><th>Git</th></tr></thead>
+          <tbody>
+            <tr><td><code>inbox/</code></td><td>Task drop-off box</td><td>ignored</td></tr>
+            <tr><td><code>tasks/</code></td><td>Task workspace</td><td>ignored</td></tr>
+            <tr><td><code>reports/</code></td><td>Daily &amp; weekly reports</td><td>ignored</td></tr>
+            <tr><td><code>daily/</code></td><td>Daily file index</td><td>ignored</td></tr>
+            <tr><td><code>demo/</code></td><td>Example tasks</td><td>tracked</td></tr>
+            <tr><td><code>templates/</code></td><td>Document templates</td><td>tracked</td></tr>
+            <tr><td><code>.claude/</code></td><td>Config, rules, Skills</td><td>tracked</td></tr>
+            <tr><td><code>changelog.md</code></td><td>Global task log</td><td>ignored</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Index System</h3>
+        <table>
+          <thead><tr><th>Index</th><th>Granularity</th><th>Content</th></tr></thead>
+          <tbody>
+            <tr><td><code>changelog.md</code></td><td>Task-level</td><td>Time, task name, source files, output</td></tr>
+            <tr><td><code>daily/*.md</code></td><td>Day-level</td><td>All files processed that day</td></tr>
+            <tr><td><code>README.md</code></td><td>Directory-level</td><td>Summary index of entries in each directory</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="snap-section snap-footer">
+    <div class="pixel-wave-bottom"></div>
+    <div class="footer-inner">
+      <p>AI Workbench &middot; Powered by Claude Code</p>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Reference Panels -->
+<div class="ref-panel" id="workflow-detail">
+  <div class="ref-panel-inner">
+    <button class="ref-panel-close">x</button>
+    <h3>Workflow Details</h3>
+    <div class="card">
+      <h4>Drop a Task</h4>
+      <p>Place task folders into <code>inbox/</code>. Each folder = one task, and can contain multiple source files.</p>
+      <pre><code>inbox/
+├── Q1-Analysis/
+│   ├── data.xlsx
+│   └── template.docx
+└── Meeting-Notes/
+    └── recording.pdf</code></pre>
+    </div>
+    <div class="card">
+      <h4>Generate a Task Note</h4>
+      <p>Tell Claude what you want done. It generates a <code>task.md</code> note documenting the requirements and processing plan.</p>
+      <pre><code>## Requirements
+Generate Q1 data analysis report using the template
+## Plan
+- Skill: minimax-xlsx
+- Steps: Read → Analyze → Output</code></pre>
+    </div>
+  </div>
+</div>
+
+<div class="ref-panel" id="skills-detail">
+  <div class="ref-panel-inner">
+    <button class="ref-panel-close">x</button>
+    <h3>PDF: Three Options</h3>
+    <table>
+      <thead><tr><th>Scenario</th><th>Skill</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td>PDF &rarr; Markdown</td><td><code>mineru</code></td><td>Extract text content</td></tr>
+        <tr><td>Merge/Split/Extract</td><td><code>pdf</code></td><td>Manipulate existing PDFs</td></tr>
+        <tr><td>Generate high-quality PDF</td><td><code>minimax-pdf</code></td><td>Design-grade output</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="ref-panel" id="loops-detail">
+  <div class="ref-panel-inner">
+    <button class="ref-panel-close">x</button>
+    <h3>Loop Details</h3>
+    <div class="card">
+      <h4>inbox-monitor <span class="badge blue">Every 20 min</span></h4>
+      <ul>
+        <li>Scans <code>inbox/</code> for subfolders</li>
+        <li>Folders with <code>task.md</code> enter processing</li>
+        <li>Moved into <code>tasks/</code> and renamed</li>
+        <li>Routed to the appropriate Skill</li>
+        <li>Indexes updated + git commit</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>daily-routine <span class="badge green">Every 24 hours</span></h4>
+      <ul>
+        <li>Reads the day's changelog and git log</li>
+        <li>Generates a daily report (with retrospective)</li>
+        <li>On Fridays, also generates a weekly report</li>
+        <li>Saved to <code>reports/</code></li>
+        <li>Updates README index</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="lightbox" class="lightbox">
+  <div class="lightbox-body">
+    <img id="lightbox-img" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+</div>
+
+<audio id="bgm" src="../assets/bgm.mp3" loop preload="none"></audio>
+
+<script src="../script.js"></script>
+</body>
+</html>

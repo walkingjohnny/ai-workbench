@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://ai-lingnan.github.io/ai-workbench/</loc>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://ai-lingnan.github.io/ai-workbench/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-lingnan.github.io/ai-workbench/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-lingnan.github.io/ai-workbench/"/>
+    <lastmod>2026-05-11</lastmod>
+  </url>
+  <url>
+    <loc>https://ai-lingnan.github.io/ai-workbench/en/</loc>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://ai-lingnan.github.io/ai-workbench/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-lingnan.github.io/ai-workbench/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-lingnan.github.io/ai-workbench/"/>
+    <lastmod>2026-05-11</lastmod>
+  </url>
+</urlset>
