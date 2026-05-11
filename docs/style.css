@@ -610,6 +610,50 @@ footer {
   padding: 1.5rem 0;
 }
 
+.fixed-links {
+  position: fixed;
+  bottom: 1rem;
+  right: 1.25rem;
+  z-index: 4000;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  background: rgba(26, 58, 74, 0.7);
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(91, 181, 197, 0.3);
+  animation: breathe 3.5s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 0.85; }
+}
+
+.fixed-links:hover {
+  animation: none;
+  opacity: 1;
+}
+
+.fixed-links a {
+  color: var(--ocean-foam);
+  text-decoration: none;
+}
+
+.fixed-links a:hover {
+  color: var(--coral-light);
+}
+
+.fixed-links span {
+  margin: 0 0.4rem;
+  color: rgba(184, 232, 239, 0.5);
+}
+
+@media (max-width: 768px) {
+  .fixed-links {
+    bottom: 58px;
+    right: 0.75rem;
+  }
+}
+
 /* ── Loading Screen ── */
 
 #loading-screen {
