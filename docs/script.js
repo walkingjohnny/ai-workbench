@@ -9,8 +9,8 @@
   var screen = document.getElementById('loading-screen');
   var progress = 0;
   var loadDone = false;
-  var heroSub = document.querySelector('.subtitle');
-  var heroSubText = heroSub ? heroSub.textContent : '';
+  var isEn = false;
+  var heroSub, heroSubText;
 
   function setProgress(v) {
     progress = Math.min(Math.round(v), 100);
@@ -36,6 +36,8 @@
         setTimeout(function () { screen.remove(); }, 600);
       }
       initScrollAnimations();
+      heroSub = document.querySelector('.subtitle[data-lang="' + (isEn ? 'en' : 'zh') + '"]');
+      heroSubText = heroSub ? heroSub.textContent : '';
       if (heroSub && heroSubText) {
         setTimeout(function () { typeText(heroSub, heroSubText, 30); }, 200);
       }
@@ -63,6 +65,45 @@
     }, speed);
     return function () { clearInterval(id); el.classList.remove('typing-cursor'); };
   }
+
+  /* ── Language Toggle ── */
+
+  function setLang(lang) {
+    isEn = lang === 'en';
+    document.body.classList.toggle('lang-en', isEn);
+    document.documentElement.lang = isEn ? 'en' : 'zh-CN';
+    localStorage.setItem('lang', lang);
+
+    document.querySelectorAll('.i18n-pic').forEach(function (pic) {
+      var src = pic.querySelector('source');
+      var img = pic.querySelector('img');
+      if (src) src.srcset = pic.getAttribute('data-' + lang + '-webp') || src.srcset;
+      if (img) {
+        img.src = pic.getAttribute('data-' + lang + '-src') || img.src;
+        img.alt = pic.getAttribute('data-' + lang + '-alt') || img.alt;
+      }
+    });
+
+    var langIcon = document.getElementById('lang-icon');
+    var langLabel = document.getElementById('lang-label');
+    var langMobile = document.getElementById('lang-toggle-mobile');
+    if (langIcon) langIcon.textContent = isEn ? '文' : 'A';
+    if (langLabel) langLabel.textContent = isEn ? '中文' : 'EN';
+    if (langMobile) langMobile.textContent = isEn ? '文' : 'A';
+
+    updateBgmUI();
+  }
+
+  var savedLang = localStorage.getItem('lang');
+  if (savedLang === 'en' || (new URLSearchParams(window.location.search)).get('lang') === 'en') {
+    setLang('en');
+  }
+
+  var langBtn = document.getElementById('lang-toggle');
+  var langBtnMobile = document.getElementById('lang-toggle-mobile');
+  function toggleLang() { setLang(isEn ? 'zh' : 'en'); }
+  if (langBtn) langBtn.addEventListener('click', toggleLang);
+  if (langBtnMobile) langBtnMobile.addEventListener('click', toggleLang);
 
   /* ── Dark Mode ── */
 
@@ -231,8 +272,6 @@
   }
 
   /* ── Lightbox ── */
-
-  var isEn = document.documentElement.lang === 'en';
 
   var CAPTIONS = {
     '项目架构图': '这是工作台的全景。你把文件丢进 inbox，跟 Claude 说一声想要什么，它会和你聊两句确认清楚，然后写张便签把方案定下来。有了便签，后面全自动——选 Skill、处理文件、产出结果、更新索引、提交 Git，一条龙。',

@@ -952,6 +952,11 @@ body.dark .mobile-nav {
   .section-inner { padding: 1.5rem 1rem; }
 }
 
+/* ── Language Toggle ── */
+
+body:not(.lang-en) [data-lang="en"] { display: none !important; }
+body.lang-en [data-lang="zh"] { display: none !important; }
+
 /* ── Reduced Motion ── */
 
 @media (prefers-reduced-motion: reduce) {
